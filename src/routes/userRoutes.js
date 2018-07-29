@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.post('/login', userController.loginGoogleUser); 
 
-
 module.exports = router;
 
 

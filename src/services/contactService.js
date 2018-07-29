@@ -21,15 +21,6 @@ async function addContact(currentEmail, contactEmail) {
 
 };
 
-async function getContactById(id){
-    try{
-        
-    }
-    catch(e){
-        console.log(e);
-        throw 'id not valid';
-    }
-}
 
 module.exports = {
     addContact,
