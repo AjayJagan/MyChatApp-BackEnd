@@ -5,7 +5,7 @@ async function addContact(req, res) {
     const currentEmail = req.user.email;
     const contactEmail = req.body.email;
     try {
-        console.log(currentEmail, contactEmail)
+        //console.log(currentEmail, contactEmail)
         const user = await contactService.addContact(currentEmail, contactEmail);
         res.send(user);
     }

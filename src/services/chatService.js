@@ -1,6 +1,7 @@
 import Message from '../models/Message';
 
- export const sendMessage = (connections,from, to, message) =>{
+ async function sendMessage(connections,from, to, message){
+  //  console.log(connections)
     const messageObject = new Message({
         from,
         to,
@@ -17,7 +18,20 @@ import Message from '../models/Message';
                 recipient.emit('onReceiveMessage',savedMessage,()=>{
                     messageObject.save();
                 })
-            })
+            });
+           (connections[from] || []).map((sender)=>{
+                sender.emit('onSentMessage',savedMessage);
+           })
         }
     })
+ };
+
+ async function loadMessages(recipient, sender){
+     //console.log('in service')
+     return await Message.getMessages(recipient,sender);
+ }
+
+ module.exports ={
+     loadMessages,
+     sendMessage
  }
